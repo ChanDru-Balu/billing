@@ -1,0 +1,7 @@
+{
+  "name": "applock",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

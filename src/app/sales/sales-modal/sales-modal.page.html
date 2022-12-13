@@ -1,0 +1,148 @@
+<!-- <ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Purchase Add Page
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <ion-grid>
+    <ion-row style="align-items: center; font-size: large">
+      <ion-col size="10" style="text-align: center">Sales {{type}}</ion-col>
+      <ion-col size="2">
+        <ion-button (click)="dismiss()" fill="clear" color="danger">
+          <ion-icon style="font-size: 1.5rem" name="close-circle" slot="start">
+          </ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6.5">
+        <ion-item>
+          <!-- <ion-label>Select Category</ion-label> -->
+          <ion-select
+            placeholder="Select Customer"
+            [(ngModel)]="customer"
+            okText="Okay"
+            cancelText="Dismiss"
+          >
+            <div *ngFor="let customer of customers; let i = index">
+              <ion-select-option [value]="customer"
+                >{{customer.customerName}}-{{customer.mobile}}</ion-select-option
+              >
+            </div>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="5.5">
+        <ion-item>
+          <!-- <ion-label>Date</ion-label> -->
+          <ion-input
+          style="padding-right: 4px;"
+            type="date"
+            [(ngModel)]="date"
+            placeholder="Date"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-item class="invoiceNumber" fill="standard">
+        <ion-label position="floating">Invoice Number</ion-label>
+        <ion-input [(ngModel)]="invoice"></ion-input>
+      </ion-item>
+    </ion-row>
+
+    <!-- Table For Item Array -->
+
+    <ion-row>
+      <ion-col>
+        <ion-button color="warning" expand="block" (click)="addItem()"
+          >Add Item</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="second-grid">
+    <ion-row *ngIf="items.length > 0">
+      <ion-col size="4">
+        <h4>Product</h4>
+      </ion-col>
+      <ion-col size="3">
+        <h4>Price</h4>
+      </ion-col>
+      <ion-col size="2">
+        <h4>Qty</h4>
+      </ion-col>
+      <ion-col size="3">
+        <h4>Total</h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let item of items;let i=index;">
+      <ion-col size="4">
+        <ion-select
+          style="padding-left: 0px"
+          placeholder="Select Product"
+          [(ngModel)]="item.productId"
+          (ionChange)="productSelect($event,i)"
+        >
+          <ion-select-option
+            *ngFor="let product of products; let j = index"
+            [value]="product.id"
+            >{{product.productName}}</ion-select-option
+          >
+        </ion-select>
+      </ion-col>
+      <ion-col size="3">
+        <ion-input style="font-size: 10px" disabled="true"
+        >{{item.price}}</ion-input
+      >
+      </ion-col>
+      <ion-col size="2">
+        <ion-input
+        style="font-size: 10px"
+          (ionChange)="itemInput($event,i)"
+          [value]="item.quantity"
+          placeholder="0"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="3">
+        <ion-input style="font-size: 10px" disabled="true"
+          >{{item.total || '-'}}</ion-input
+        >
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="total" style="float: left">
+      Discount :
+      <ion-input
+        (ionChange)="discountInput($event)"
+        [(ngModel)]="discount"
+        placeholder="0"
+      ></ion-input>
+    </ion-row>
+
+    <ion-row *ngIf="total" style="float: right"> Total : {{total}} </ion-row>
+
+    <ion-row *ngIf="total" style="float: right">
+      Grand Total : {{grandTotal}}
+    </ion-row>
+  </ion-grid>
+
+  <ion-footer *ngIf="items.length > 0" style="margin-top: 5px;" >
+    <ion-button
+      color="success"
+      class="submit-button"
+      expand="block"
+      (click)="submit()"
+      >Submit</ion-button
+    >
+  </ion-footer>
+</ion-content>

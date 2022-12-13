@@ -1,0 +1,15 @@
+.item {
+  margin: 5px 0px;
+}
+
+.ioninput {
+  input {
+    height: 2 px !important;
+  }
+}
+
+.item-label-floating .sc-ion-input-md-h {
+  --padding-top: 0px;
+  --padding-bottom: 0px;
+  --padding-start: 0;
+}

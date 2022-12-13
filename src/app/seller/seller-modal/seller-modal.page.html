@@ -1,0 +1,52 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>cat-modal</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <ion-grid>
+
+    <ion-row style="align-items: center;font-size:large; " >
+      <ion-col size="10" style="text-align: center;" >Seller</ion-col>
+      <ion-col size="2">
+        <ion-button (click)="dismiss()" fill="clear" color="danger" >
+          <ion-icon style="font-size: 1.5rem;" name="close-circle" slot="start" > </ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-card style="width: 94%;" >
+        <ion-card-header>
+          <ion-card-title>Seller Card</ion-card-title>
+          <ion-card-subtitle>Fill the details below</ion-card-subtitle>
+        </ion-card-header>
+    
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Seller Name</ion-label>
+            <ion-input (ionChange)="sellerInput()" [(ngModel)]="sellerName" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Mobile Number</ion-label>
+            <ion-input (ionChange)="sellerInput()" [(ngModel)]="mobile" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Seller Gst</ion-label>
+            <ion-input (ionChange)="sellerInput()" [(ngModel)]="gst" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Seller Address</ion-label>
+            <ion-input (ionChange)="sellerInput()" [(ngModel)]="address1" ></ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+
+    <ion-button (click)="submit()"expand="block" [disabled]="submitValue" >Submit</ion-button>
+
+  </ion-grid>
+
+
+</ion-content>

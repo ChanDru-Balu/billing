@@ -1,0 +1,118 @@
+<!-- <ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Seller Page
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" fill="clear">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Seller Page
+    </ion-title>
+  </ion-toolbar>
+
+  <section padding>
+
+    <ion-list *ngIf="sellers">
+    <h2 style="text-align: center;">Sellers</h2>
+
+      <!-- <ion-item *ngFor="let seller of sellers">
+        <ion-avatar slot="start">
+          <ion-icon name="musical-notes" size="large"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>{{seller.sellerName}}</h3>
+          <p>{{seller.mobile}}</p>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-button
+            color="dark"
+            size="large"
+            (click)="deleteSeller($event, seller)"
+          >
+            <ion-icon name="close"></ion-icon
+          ></ion-button>
+          <ion-button color="dark" (click)="presentModal('edit', seller)"
+            ><ion-icon name="create"></ion-icon
+          ></ion-button>
+        </ion-buttons>
+      </ion-item> -->
+
+      <ion-row class="each" *ngFor="let seller of sellers;let i = index;">
+        <ion-col size="3">
+          <img src="assets/images/sellers.png" alt="" />
+        </ion-col>
+
+        <ion-col>
+          <ion-input
+            class="product-name"
+            [(ngModel)]="seller.sellerName"
+            [disabled]="seller.disabled"
+          ></ion-input>
+          <ion-input
+            class="product-name"
+            [(ngModel)]="seller.mobile"
+            [disabled]="seller.disabled"
+          ></ion-input>
+          <ion-input
+          class="product-name"
+          [(ngModel)]="seller.gst"
+          [disabled]="seller.disabled"
+        ></ion-input>
+          <ion-textarea
+            class="product-name"
+            [(ngModel)]="seller.address1"
+            [disabled]="seller.disabled"
+          ></ion-textarea>
+        </ion-col>
+
+        <ion-col size="2.5" style="padding-top: 15px">
+          <ion-row class="row">
+            <ion-button
+              *ngIf="seller.disabled"
+              (click)="edit(seller)"
+              class="row-button"
+              ><ion-icon class="row-icon" name="create-sharp"></ion-icon
+            ></ion-button>
+            <ion-button
+              *ngIf="!seller.disabled"
+              (click)="edit(seller)"
+              class="row-button"
+              ><ion-icon class="row-icon" name="checkmark-sharp"></ion-icon
+            ></ion-button>
+          </ion-row>
+
+          <ion-row class="row">
+            <ion-button (click)="deleteSeller($event,seller)" class="row-button"
+              ><ion-icon class="row-icon" name="trash-sharp"></ion-icon
+            ></ion-button>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-list>
+
+
+    <ion-text *ngIf="!sellers || sellers.length < 1"
+      >No Customer Available. Add one</ion-text
+    >
+  </section>
+
+  
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button  color="warning" (click)="presentModal('new',null)"><ion-icon name="add"></ion-icon></ion-fab-button>
+    </ion-fab>
+
+</ion-content>

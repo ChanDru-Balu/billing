@@ -1,0 +1,34 @@
+.submit-button {
+  padding: 0px 10px;
+}
+
+ion-item {
+  padding: 0% !important;
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 100%;
+
+  ion-select {
+    width: 100%;
+  }
+
+  .date {
+    border-right: 2px;
+  }
+}
+
+
+.invoiceNumber {
+    margin: 0px 5px;
+  }
+
+ .second-grid{
+    ion-col {
+        border: 2px solid #aeb7ca;
+      }
+ }
+
+
+ ion-footer{
+  margin-top: 5px;
+ }

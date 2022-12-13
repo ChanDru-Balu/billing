@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" fill="clear">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Categories
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+
+<!-- <section padding>  -->
+
+    <ion-list *ngIf="categories">
+
+      <ion-item *ngFor="let category of categories;let i = index;">
+        <ion-input [disabled]="category.disabled" (ionChange)="changeValue(i,$event)" [(ngModel)]="category.categoryName" ></ion-input>
+        <ion-button *ngIf="category.disabled" (click)="edit(category)" ><ion-icon name=create-sharp ></ion-icon></ion-button>
+        <ion-button *ngIf="!category.disabled" (click)="edit(category)" ><ion-icon name=checkmark-sharp ></ion-icon></ion-button>
+        <ion-button (click)="deleteCategory($event , category.id)" ><ion-icon name="trash-sharp"></ion-icon></ion-button>
+      </ion-item>
+
+      <!-- <ion-item  *ngFor="let category of categories;let i = index;">
+  create-sharp  
+          <ion-label>
+            <h3>{{calculateStuff(i)}}.{{category.categoryName}}</h3>
+          </ion-label>
+  
+          <ion-buttons slot="end">
+            <ion-button size="large" (click)="deleteCategory($event, category.id)">
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
+            <ion-button (click)="presentModal('edit', category)">
+              <ion-icon name="create"></ion-icon>
+            </ion-button>
+  
+          </ion-buttons>  
+        
+      </ion-item> -->
+
+
+    </ion-list>
+
+    <!-- <div class="empty">
+      <ion-text *ngIf="!categories || categories.length < 1">No Category Available. Add one</ion-text>
+    </div> -->
+
+  <!-- </section> -->
+
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button color="warning" (click)="presentModal('new',null)">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> 
+
+</ion-content>

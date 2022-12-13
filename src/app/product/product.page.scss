@@ -1,0 +1,144 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+// ion-buttons {
+//     margin-left: 2px;
+//     margin-right: 2px;
+//   }
+  
+//   .empty {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 200px;
+//   }
+  
+  
+//   ion-list {
+//     min-height: 100vh;
+//     background-color: #92949c;
+//   }
+  
+//   ion-list {
+//     height: 100%;
+//     // display: flex;
+//     // flex-direction: row;
+//     // justify-content: center;
+//     // align-items: center;
+//     // padding: 30px;
+//     background: #92949c;
+//     min-height: 100vh;
+//     background-color: #92949c;
+//   }
+  
+//   ion-item {
+//     // height: 40px;
+//     // width: 100%;
+//     // background: #dde1e7;
+//     // border-radius: 6px;
+//     margin: 3%;
+//     // box-shadow: -3px -3px 7px #ffffffb2, 
+//     //  3px 3px 5px rgba(94, 104, 121, 0.945);
+//     border-radius: 10px;
+//     background: #92949c;
+//     background-color: #76787e;
+//     box-shadow: -21px -21px 31px #76787e,
+//       21px 21px 31px #aeb0ba;
+//   }
+  
+//   .card {
+//       // height: 40px;
+//       // width: 100%;
+//       // background: #dde1e7;
+//       // border-radius: 6px;
+//       margin: 3%;
+//       display: flex;
+//       // box-shadow: -3px -3px 7px #ffffffb2, 
+//       //  3px 3px 5px rgba(94, 104, 121, 0.945);
+//       border-radius: 10px;
+//       background: #92949c;
+//       background-color: #76787e;
+//       box-shadow: -21px -21px 31px #76787e,
+//         21px 21px 31px #aeb0ba;
+//   }
+  
+//   ion-item::part(native) {
+//     //WRITE ALL YOUR CSS RULES HERE
+//     // padding-left: unset;
+//     background-color: #76787e;
+//     /** and lots more **/
+//   }
+  
+  
+  
+//   ion-button {
+//     border-radius: 10px;
+//     margin-right: 10px;
+//     background: #92949c;
+//     box-shadow: inset -21px -21px 31px #76787e,
+//                 inset 21px 21px 31px #aeb0ba
+//   }
+
+.each{
+  border: 1px solid #4175ff;
+    border-radius: 15px;
+    /* padding: 2px; */
+    margin: 5px;
+}
+
+.row{
+  justify-content: center;
+}
+
+.row-button {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.row-icon {
+  min-width: 20px; right: 10px;
+}
+
+.product-name{
+  --padding-start: 1px;
+    --padding-bottom: 2px;
+    --padding-top: 3px;
+}
+
+.ng-dropdown-panel {
+  box-sizing: border-box;
+  position: absolute;
+  color: yellow;
+  background-color: grey;
+  opacity: 0;
+  width: 100%;
+  z-index: 1050;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+
+ion-card{
+  border: 2px solid lightgreen;
+  height: 25%;
+  padding: 0px !important;
+  ion-card-header{
+    line-height: 0rem;
+    padding: 7px 0px 15px 5px;
+    ion-item-divider{
+      max-height: 65px !important;
+    }
+    ion-card-content{
+      --padding-top: 0px;
+      --padding-bottom: 0px;
+    }
+  }
+
+}
+
+.card-content-md {
+
+  padding-top: 0px;
+  padding-bottom: 0px;
+
+}
+

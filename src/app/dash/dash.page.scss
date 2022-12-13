@@ -1,0 +1,140 @@
+// ion-content {
+//   align-items: center;
+//   --ion-background-color: #afd275;
+//   display: flex;
+//   height: 100%;
+//   justify-content: center;
+// }
+
+// .element {
+//   align-items: center;
+//   background-color: #afd275;
+//   box-shadow:
+//     12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+//     -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+//   border-radius: 50%;
+//   display: flex;
+//   height: 180px;
+//   justify-content: center;
+//   margin-right: 4rem;
+//   width: 180px;
+// }
+
+// button {
+//   font-size: 1.3rem;
+//   color: #002c59;
+//   margin: auto;
+//   border: 0;
+//   background: none;
+//   padding: .5em 1em;
+// }
+
+// // ion-button {
+// //   font-size: 1.3rem;
+// //   color: #002c59;
+// //   margin: auto;
+// //   border: 0;
+// //   background: none;
+// //   padding: .5em 1em;
+// // }
+
+ion-header {
+  background: transparent;
+  ion-item {
+    --background: transparent;
+    ion-avatar {
+      background: white;
+    }
+  }
+}
+
+.header-label {
+  text-align: center;
+  /* left: 53%; */
+  color: white;
+  font-weight: bold;
+  margin-left: 20%;
+  font-size: 28px;
+}
+
+ion-content {
+  * {
+    font-family: lato;
+  }
+
+  .main-header {
+    height: 45vh;
+    width: 150%;
+    background: linear-gradient(
+      90deg,
+      var(--ion-color-tertiary) 10%,
+      var(--ion-color-primary) 100%
+    );
+    box-shadow: 0 1px 10px var(--ion-color-light);
+    border-radius: 0 0 50% 50%;
+    margin-left: -12vh;
+    margin-top: -60px;
+  }
+
+  ion-grid {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(10vh);
+    padding-bottom: 8vh;
+    ion-row {
+      ion-col {
+        text-align: center;
+        ion-label {
+          ion-note {
+            font-size: 0.7rem;
+          }
+          ion-chip {
+            ion-label {
+              font-size: 1.4rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  ion-card {
+    box-shadow: -1px 11px 13px -6px rgb(87, 87, 86);
+    border-radius: 10px !important;
+    margin: 10px 0;
+    ion-thumbnail {
+      width: 10vh;
+      height: 10vh;
+      border-radius: 20px;
+      background: rgba(41, 47, 228, 0.1);
+      img {
+        width: 5vh;
+        height: 5vh;
+        transform: translateY(50%);
+      }
+    }
+    ion-card-content {
+      ion-label {
+        font-weight: bold;
+        text-shadow: 1px 1px 1px var(--ion-color-medium);
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}
+
+.footer{
+  text-align: center;
+  background: #4275ff;
+
+}
+
+.footer-button{
+  text-align: center;
+  background: #4275ff;
+  font-size: 15px;
+  font-weight: bolder;
+}

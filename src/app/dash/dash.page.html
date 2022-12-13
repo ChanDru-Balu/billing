@@ -1,0 +1,40 @@
+<ion-header class="ion-no-border">
+  <ion-item lines="none">
+    <!-- <ion-button fill="clear" color="light" slot="start">
+      <ion-icon name="menu" slot="icon-only"></ion-icon>
+    </ion-button> -->
+    <ion-label class="header-label">BEE2 BILLING</ion-label>
+    <ion-avatar slot="end">
+      <img src="assets/images/bee2.png" alt="" />
+    </ion-avatar>
+  </ion-item>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <div class="main-header"></div>
+
+  <ion-grid>
+
+    <ion-row class="ion-margin-horizontal">
+      <ion-col *ngFor="let item of features" size="6">
+        <ion-card (click)="nav(item?.page)">
+          <ion-card-header>
+            <div align="center">
+              <ion-thumbnail>
+                <img [src]="item?.src" />
+              </ion-thumbnail>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label color="dark">{{item?.name}} </ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer class="footer"> 
+  <button class="footer-button" (click)="upcoming()" >Upcoming...</button>
+</ion-footer>

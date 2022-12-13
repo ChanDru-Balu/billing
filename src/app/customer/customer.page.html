@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" fill="clear">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> Customers </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" fill="clear">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Customer Page
+    </ion-title>
+  </ion-toolbar> -->
+
+  <section padding>
+    <ion-list *ngIf="customers">
+      <ion-row class="each" *ngFor="let customer of customers;let i = index;">
+        <ion-col size="3">
+          <img src="assets/images/customers.png" alt="" />
+        </ion-col>
+
+        <ion-col>
+          <ion-input
+            class="product-name"
+            [(ngModel)]="customer.customerName"
+            [disabled]="customer.disabled"
+          ></ion-input>
+          <ion-input
+            class="product-name"
+            [(ngModel)]="customer.mobile"
+            [disabled]="customer.disabled"
+          ></ion-input>
+          <ion-textarea
+            class="product-name"
+            [(ngModel)]="customer.address1"
+            [disabled]="customer.disabled"
+          ></ion-textarea>
+        </ion-col>
+
+        <ion-col size="2.5" style="padding-top: 15px">
+          <ion-row class="row">
+            <ion-button
+              *ngIf="customer.disabled"
+              (click)="edit(customer)"
+              class="row-button"
+              ><ion-icon class="row-icon" name="create-sharp"></ion-icon
+            ></ion-button>
+            <ion-button
+              *ngIf="!customer.disabled"
+              (click)="edit(customer)"
+              class="row-button"
+              ><ion-icon class="row-icon" name="checkmark-sharp"></ion-icon
+            ></ion-button>
+          </ion-row>
+
+          <ion-row class="row">
+            <ion-button (click)="deleteCustomer($event,customer)" class="row-button"
+              ><ion-icon class="row-icon" name="trash-sharp"></ion-icon
+            ></ion-button>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-item *ngFor="let customer of customers">
+        <ion-avatar slot="start">
+          <ion-icon name="musical-notes" size="large"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>{{customer.customerName}}</h3>
+          <p>{{customer.mobile}}</p>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-button
+            color="dark"
+            size="large"
+            (click)="deleteCustomer($event, customer)"
+          >
+            <ion-icon name="close"></ion-icon
+          ></ion-button>
+          <ion-button color="dark" (click)="presentModal('edit', customer)"
+            ><ion-icon name="create"></ion-icon
+          ></ion-button>
+        </ion-buttons>
+      </ion-item> -->
+
+      <!-- <ion-item *ngFor="let customer of customers;let i = index;">
+        <ion-input [disabled]="customer.disabled" (ionChange)="changeValue(i,$event)" [(ngModel)]="customer.customerName" ></ion-input>
+        <ion-input [disabled]="customer.disabled" (ionChange)="changeValue(i,$event)" [(ngModel)]="customer.customerName" ></ion-input>
+        <ion-input [disabled]="customer.disabled" (ionChange)="changeValue(i,$event)" [(ngModel)]="customer.customerName" ></ion-input>
+        <ion-button *ngIf="customer.disabled" (click)="presentModal('edit' , customer)" ><ion-icon name=create-sharp ></ion-icon></ion-button>
+        <ion-button *ngIf="!customer.disabled" (click)="presentModal('edit' , customer)" ><ion-icon name=checkmark-sharp ></ion-icon></ion-button>
+        <ion-button (click)="deleteCustomer($event , customer)" ><ion-icon name="trash-sharp"></ion-icon></ion-button>
+      </ion-item> -->
+
+      <!-- <ion-card *ngFor="let customer of customers">
+        <ion-card-header class="card-header">
+          <ion-card-title >{{customer.customerName}}</ion-card-title>
+          <ion-card-subtitle>{{customer.mobile}}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content class="card-content">
+          {{customer.address1}}
+        </ion-card-content>
+      
+        <ion-button >Edit</ion-button>
+        <ion-button >Delete</ion-button> 
+      </ion-card> -->
+    </ion-list>
+
+    <ion-text *ngIf="!customers || customers.length < 1"
+      >No Customer Available. Add one</ion-text
+    >
+  </section>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button color="warning" (click)="presentModal('new',null)"
+      ><ion-icon name="add"></ion-icon
+    ></ion-fab-button>
+  </ion-fab>
+</ion-content>

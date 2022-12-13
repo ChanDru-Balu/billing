@@ -1,0 +1,62 @@
+<!-- <ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Sales Page
+    </ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" fill="clear">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Sales Page
+    </ion-title>
+  </ion-toolbar>
+
+  <section padding>
+    <ion-list *ngIf="saleses">
+    <h2 style="text-align: center;">Sales</h2>
+
+      <ion-item *ngFor="let sales of saleses;let i = index;">
+        <ion-avatar slot="start">
+          <ion-icon name="musical-notes" size="large"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>{{sales.invoice}}</h3>
+          <p>{{sales.customerName}}</p>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-button
+            color="dark"
+            size="large"
+            (click)="deleteSales($event, sales)"
+          >
+            <ion-icon name="close"></ion-icon
+          ></ion-button>
+          <ion-button color="dark" (click)="presentModal('view', sales)"
+            ><ion-icon name="eye"></ion-icon
+          ></ion-button>
+          <ion-button color="dark" (click)="presentModal('edit', sales)"
+            ><ion-icon name="create"></ion-icon
+          ></ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+    <ion-text *ngIf="!saleses || saleses.length < 1"
+      >No Sales Available. Add one</ion-text
+    >
+  </section>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button  color="warning" (click)="presentModal('new',null)"><ion-icon name="add"></ion-icon></ion-fab-button>
+    </ion-fab>
+</ion-content>

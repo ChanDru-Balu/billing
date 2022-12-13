@@ -1,0 +1,73 @@
+<!-- <ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Songs App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add your favorite song</ion-card-title>
+      <ion-card-subtitle>Fill the details below</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="songFormGroup" (ngSubmit)="addSong()">
+        <ion-item *ngFor="let input of songFormData.inputs">
+          <ion-label position="floating">{{input.label}}</ion-label>
+          <ion-input [formControlName]="input.formControlName"></ion-input>
+        </ion-item>
+        <ion-button
+          expand="block"
+          color="dark"
+          type="submit"
+          [disabled]="!songFormGroup.valid"
+          >Add Song</ion-button
+        >
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <section padding>
+    <h2>Your songs</h2>
+    <ion-list *ngIf="songs">
+      <ion-item *ngFor="let song of songs">
+        <ion-avatar slot="start">
+          <ion-icon name="musical-notes" size="large"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>{{song.songName}}</h3>
+          <p>{{song.artistName}}</p>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-button
+            color="dark"
+            size="large"
+            (click)="deleteSong($event, song.id)"
+          >
+            <ion-icon name="close"></ion-icon
+          ></ion-button>
+          <ion-button color="dark" (click)="editSong($event, song.id)"
+            ><ion-icon name="create"></ion-icon
+          ></ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+    <ion-text *ngIf="!songs || songs.length < 1"
+      >No Song Available. Add one</ion-text
+    >
+  </section>
+
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    *ngIf="songs && songs.length > 0"
+  >
+    <ion-fab-button (click)="clearAllSongs($event)" color="dark">
+      <ion-icon name="trash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content> -->

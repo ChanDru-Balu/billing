@@ -1,0 +1,88 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>cat-modal</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <ion-grid>
+    <ion-row style="align-items: center; font-size: large">
+      <ion-col size="10" style="text-align: center">Product Add</ion-col>
+      <ion-col size="2">
+        <ion-button (click)="dismiss()" fill="clear" color="danger">
+          <ion-icon style="font-size: 1.5rem;" name="close-circle" slot="start"> </ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-card style="width: 94%">
+        <!-- <ion-card-header>
+          <ion-card-title>Product {{type}}</ion-card-title>
+          <ion-card-subtitle>Fill the details below</ion-card-subtitle>
+        </ion-card-header> -->
+
+        <ion-card-content>
+          <!-- <ion-item style="padding: 0% 5%">
+            <ion-select
+              value="brown"
+              [(ngModel)]="category"
+              okText="Okay"
+              placeholder="Category"
+              cancelText="Dismiss"
+              (ionChange)="categorySelected($event)"
+            >
+              <div *ngFor="let category of categories; let i = index">
+                <ion-select-option [value]="category"
+                  >{{category.categoryName}}</ion-select-option
+                >
+              </div>
+            </ion-select>
+          </ion-item> -->
+
+          <!--Using ng-option and for loop-->
+          <ng-select
+            [(ngModel)]="category"
+            placeholder="Category"
+            (ionChange)="categorySelected($event)"
+          >
+            <ng-option *ngFor="let category of categories" [value]="category"
+              >{{category.categoryName}}</ng-option
+            >
+          </ng-select>
+
+          <ion-item fill="outline">
+            <ion-label position="floating">Product Name</ion-label>
+            <ion-input class="ioninput"
+              placeholder="Product Name"
+              (ionChange)="categoryInput(name)"
+              [(ngModel)]="name"
+            ></ion-input>
+          </ion-item>
+          
+          <ion-item fill="outline">
+            <ion-label position="floating">Product GST(%)</ion-label>
+            <ion-input class="ioninput"
+               placeholder="Product GST"
+              (ionChange)="categoryInput(gst)"
+              [(ngModel)]="gst"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item class="item" fill="outline">
+            <ion-label position="floating">Product Price(In Rs.)</ion-label>
+            <ion-input class="ioninput"
+              placeholder="Product Price"
+              (ionChange)="categoryInput(price)"
+              [(ngModel)]="price"
+            ></ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+
+    <ion-button (click)="submit()" expand="block"
+      >Submit</ion-button
+    >
+  </ion-grid>
+</ion-content>

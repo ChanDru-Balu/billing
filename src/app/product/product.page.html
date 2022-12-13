@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-button (click)="back()" fill="clear">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> Product Page </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- New Design -->
+  <ion-card  *ngFor="let product of products;let i = index;">
+    <ion-item-divider>
+      <ion-card-header>
+        <ion-card-title>{{product.productName}}</ion-card-title>
+        <ion-card-subtitle>
+            Category: {{getCategory(product.categoryId)}}
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-item-divider>
+
+    <ion-card-content>
+     <ion-grid>
+      <ion-row>
+        <ion-col size="3">
+          <h3>Price:</h3>
+          <h3>GST:</h3>
+          <h3>Quantity:</h3>
+        </ion-col>
+        <ion-col size="9">
+          <h3>{{product.price}}<span>&#8377;</span></h3>
+          <h3>{{product.gst}} %</h3>
+          <h3>{{product.quantity}}</h3>
+        </ion-col>
+      </ion-row>
+      <ion-row >
+        <ion-col size="3" ><ion-button style="font-size: 12px;" color="danger" (click)="deleteConfirmation(product.id)" expand="block" >Delete</ion-button></ion-col>
+        <ion-col size="3" offset="6" ><ion-button style="font-size: 12px;" color="warning" (click)="presentModal('edit',product)" expand="block" >Edit</ion-button></ion-col>
+
+      </ion-row>
+     </ion-grid>
+    </ion-card-content>
+
+    
+
+  </ion-card>
+
+  <!-- <ion-row class="each" *ngFor="let product of products;let i = index;">
+    <ion-col size="3">
+      <img src="assets/images/products.png" alt="" />
+    </ion-col>
+    <ion-col>
+      <ion-input
+        class="product-name"
+        [(ngModel)]="product.productName"
+        [disabled]="product.disabled"
+      ></ion-input>
+      <div style="display: block; border: 1px solid black">
+        <ng-select
+          [(ngModel)]="product.categoryId"
+          appendTo="body"
+          (change)="categorySelected($event,product,i)"
+          [disabled]="product.disabled"
+        >
+          <ng-option
+            *ngFor="let category of categories"
+            style="background-color: white; color: black"
+            [value]="category.id"
+          >
+            {{ category.categoryName }}
+          </ng-option>
+        </ng-select>
+      </div>
+
+      <ion-row>
+        <ion-col>
+          <ion-input [(ngModel)]="product.price" [disabled]="product.disabled"
+            >rs:</ion-input
+          >
+        </ion-col>
+        <ion-col style="right: 10px">
+          <ion-input [(ngModel)]="product.gst" [disabled]="product.disabled"
+            >Gst%</ion-input
+          >
+        </ion-col>
+        <ion-col style="right: 10px">
+          <ion-input
+            [(ngModel)]="product.quantity"
+            [disabled]="product.disabled"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col size="2.5" style="padding-top: 15px">
+      <ion-row class="row">
+        <ion-button
+          *ngIf="product.disabled"
+          (click)="changeProduct(product)"
+          class="row-button"
+          ><ion-icon class="row-icon" name="create-sharp"></ion-icon
+        ></ion-button>
+        <ion-button
+          *ngIf="!product.disabled"
+          (click)="changeProduct(product)"
+          class="row-button"
+          ><ion-icon class="row-icon" name="checkmark-sharp"></ion-icon
+        ></ion-button>
+      </ion-row>
+      <ion-row class="row">
+        <ion-button
+          class="row-button"
+          (click)="deleteProduct($event,product.id)"
+          ><ion-icon class="row-icon" name="trash-sharp"></ion-icon
+        ></ion-button>
+      </ion-row>
+    </ion-col>
+  </ion-row> -->
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button color="warning" (click)="presentModal('new',null)"
+      ><ion-icon name="add"></ion-icon
+    ></ion-fab-button>
+  </ion-fab>
+</ion-content>

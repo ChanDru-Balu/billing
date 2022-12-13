@@ -1,0 +1,148 @@
+ion-header{
+    ion-toolbar{
+        ion-title{
+            text-align : center;
+            font-size:20px;
+            font-weight: 900;
+            margin-left:-50px;
+            color:#4e7852;
+            span{
+                color:orange;
+            }
+        }
+    }
+}
+
+ion-content{
+    .invoiceDetails{
+        border-bottom: 2px solid #00000011;
+    }
+    .detailHead{
+        font-size:18px;
+        font-weight: 900;
+        color:#000;
+        margin-left:10px;
+        margin-top:0px;
+    }
+    .detailHeading{
+        margin:-10px 0px;
+        h5{
+            text-align:left;
+            font-size: 12px !important;
+            color:#c7c5c5;
+            margin:10px 0px;
+            margin-left:10px;
+        }
+    }
+    .detailValues{
+        margin:-10px 0px;
+        h4{
+            font-size:12px !important;
+            font-weight: 900;
+            text-align: right !important;
+            margin:10px 0px;
+        }
+        .fromDate{
+            color:#4e7852;
+        }
+        .toDate{
+            color: #4e7852;
+        }
+        .deliverTime{
+            color:crimson;
+        }
+        .status{
+            color:#70b10b;
+        }
+    }
+    .itemHead{
+        .itemHeading{
+            h5{
+                font-size:14px;
+                margin: 0px 10px;
+                font-weight: 900;
+            }
+        }
+        .itemValues{
+            h4{
+                font-size:14px;
+                margin:0px;
+                font-weight: 900;
+            }
+        }
+    }
+    .itemDetails{
+        .itemHeading{
+            h5{
+                font-size: 16px;
+                text-transform: capitalize;
+                margin: 0px 10px;
+            }
+        }
+        .itemValues{
+            h4{
+                font-size:16px;
+                margin:0px;
+            }
+        }
+    }
+    .totalHead{
+        h5{
+            text-align:left;
+            font-size: 12px !important;
+            color:#c7c5c5;
+            margin:10px 0px;
+            margin-left:10px;
+        } 
+    }
+    .totalDetails{
+        h4{
+            font-size:12px !important;
+            font-weight: 900;
+            text-align: right !important;
+            margin:10px 0px;
+        }
+    }
+    .priceHead{
+        h5{
+            font-size:16px;
+            font-weight: 900;
+            margin-left:10px;
+        }
+        .useCoupon{
+            font-size:12px;
+            color: crimson;
+        }
+    }
+    .priceDetails{
+        h4{
+            font-size:16px;
+            font-weight: 900;
+        }
+        .coupon{
+            color:crimson;
+        }
+    }
+    .grandHead{
+        h5{
+            font-size:18px;
+            font-weight: 900;
+            color:#4e7852;
+            margin-left:10px;
+        }
+    }
+    .grandDetails{
+        .grandPrice{
+            font-size:18px;
+            font-weight: 900;
+            color:#4e7852;
+        }
+    }
+    .conditions{
+        text-align: center;
+        text-decoration: underline;
+        font-size:12px;
+        font-weight: 900;
+        font-family: cursive;
+    }
+}

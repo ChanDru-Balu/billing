@@ -1,0 +1,214 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title><span>Shop Name </span></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="invoiceDetails">
+      <ion-col size="12">
+        <h4 class="detailHead">Order Details</h4>
+        <ion-row>
+          <ion-col size="8" class="detailHeading ion-text-left">
+            <h5>Invoice Number</h5>
+            <h5>Total Items</h5>
+            <h5>sales Date</h5>
+          </ion-col>
+          <ion-col size="4" class="detailValues ion-text-right">
+            <h4 class="totalItems">{{sales.invoice}}</h4>
+            <h4 class="totalItems">2</h4>
+            <h4 class="fromDate">21-05-1995</h4>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row class="invoiceDetails">
+      <ion-col size="12">
+        <h4 class="detailHead">Seller Details</h4>
+        <ion-row>
+          <ion-col size="5" class="detailHeading ion-text-left">
+            <h5>Seller Name</h5>
+            <h5>Seller Mobile</h5>
+            <h5>Seller GST</h5>
+            <h5>Seller address</h5> 
+          </ion-col>
+          <ion-col size="7" class="detailValues ion-text-center">
+            <h4 class="totalItems">chandru</h4>
+            <h4 class="totalItems">826868928</h4>
+            <h4 class="fromDate">AZKPC3271C</h4>
+            <h4 class="fromDate">ottan kovil, komarapalayam</h4>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row class="invoiceDetails">
+      <ion-col size="12">
+        <h4 class="detailHead">Item Details</h4>
+        <ion-row class="itemHead">
+          <ion-col size="4.5" class="itemHeading ion-text-left">
+            <h5>Item Name</h5>
+          </ion-col>
+          <ion-col size="2.5" class="itemHeading ion-text-center">
+            <h5>Price</h5>
+          </ion-col>
+          <ion-col size="2.5" class="itemValues ion-text-center">
+            <h4>Quantity</h4>
+          </ion-col>
+          <ion-col size="2.5" class="itemValues ion-text-right">
+            <h4>Total</h4>
+          </ion-col>
+        </ion-row>
+        <ion-row class="itemDetails" *ngFor="let list of details">
+          <ion-col size="4.5" class="itemHeading ion-text-left">
+            <h5>{{list.itemName}}</h5>
+          </ion-col>
+          <ion-col size="2.5" class="itemValues ion-text-center">
+            <h4>{{list.quantity}}</h4>
+          </ion-col>
+          <ion-col size="2.5" class="itemValues ion-text-center">
+            <h4>{{list.quantity}}</h4>
+          </ion-col>
+          <ion-col size="2.5" class="itemValues ion-text-right">
+            <h4>{{list.quantity}}</h4>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="invoiceDetails">
+      <ion-col size="6" class="priceHead ion-text-left">
+        <h5>Total Price</h5>
+        <h5 class="useCoupon">Discount</h5>
+      </ion-col>
+      <ion-col size="6" class="priceDetails ion-text-right">
+        <h4 class="totalPrice">Rs. 10000</h4>
+        <h4 class="coupon">(-) Rs. <span>0</span></h4>
+      </ion-col>
+    </ion-row>
+    <ion-row class="invoiceDetails">
+      <ion-col size="6" class="grandHead ion-text-left">
+        <h5>Grand Total</h5>
+      </ion-col>
+      <ion-col size="6" class="grandDetails ion-text-right">
+        <h4 class="grandPrice">Rs. <span>10000</span></h4>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons  slot="start">
+      <ion-button (click)="dismiss()"  slot="icon">
+        <ion-icon class="icon" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="PrintInvoice" class="invoice-box"
+    style="max-width: 800px;margin: auto;padding: 30px;border: 1px solid #eee;box-shadow: 0 0 10px rgba(0, 0, 0, .15);font-size: 16px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #555;">
+    <ion-title class="title-ios ion-text-capitalize" style="text-align: center;">Order Invoice</ion-title>
+    <table cellpadding="0" cellspacing="0" style="width: 100%;line-height: inherit;text-align: left;">
+      <tr class="top">
+        <td colspan="2" style="padding: 5px;vertical-align: top;">
+          <table style="width: 100%;line-height: inherit;text-align: left;">
+            <tr>
+              <!-- <td class="title"
+                style="padding: 5px;vertical-align: top;padding-bottom: 20px;font-size: 45px;line-height: 45px;color: #333;">
+                <img src="../../../assets/enappd.png" style="width:100%; max-width:300px;">
+              </td> -->
+
+              <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 20px;">
+                Invoice: {{sales.invoice}}<br>
+                Created: {{sales.sellDate}}<br>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="information">
+        <td colspan="2" style="padding: 5px;vertical-align: top;">
+          <table style="width: 100%;line-height: inherit;text-align: left;">
+            <tr>
+              <td style="padding: 5px;vertical-align: top;padding-bottom: 40px;">
+                <b> Address:</b><br>
+                {{sales.customerAddress1}}
+              </td>
+
+              <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 40px;">
+                <b> Seller:</b><br>
+                {{sales.customerName}}<br>
+                {{sales.customerMobile}}<br>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+
+      <tr class="heading">
+        <td style="padding: 5px;vertical-align: top;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          Item
+        </td>
+
+        <td
+          style="padding: 5px;vertical-align: top;text-align: right;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          Total
+        </td>
+      </tr>
+
+      <tr *ngFor="let product of items" class="item">
+        <td style="padding: 5px;vertical-align: top;border-bottom: 1px solid #eee;">
+          {{product.productName}}({{product.price}}) x {{product.quantity}}
+        </td>
+
+        <td style="padding: 5px;vertical-align: top;text-align: right;border-bottom: 1px solid #eee;">
+          {{product.total }}
+        </td>
+      </tr>
+
+      <tr class="total">
+        <td style="padding: 5px;vertical-align: top;"></td>
+
+        <td style="padding: 5px;vertical-align: top;text-align: right;border-top: 2px solid #eee;font-weight: bold;">
+          Total: {{sales.total}}
+        </td>
+      </tr>
+
+      <tr class="total">
+        <td style="padding: 5px;vertical-align: top;"></td>
+
+        <td style="padding: 5px;vertical-align: top;text-align: right;border-top: 2px solid #eee;font-weight: bold;">
+          Discount: {{sales.discount}}
+        </td>
+      </tr>
+
+      <tr class="total">
+        <td style="padding: 5px;vertical-align: top;"></td>
+
+        <td style="padding: 5px;vertical-align: top;text-align: right;border-top: 2px solid #eee;font-weight: bold;">
+          Grand Total: {{sales.grandTotal}}
+        </td>
+      </tr>
+
+    </table>
+  </div>
+  <!-- <button></button> -->
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="shareViaWhatsApp()" expand="block">Share The salesd Item Details</ion-button>
+  <ion-toolbar  (click)="downloadInvoice()" color="success" class="ion-padding-horizontal">
+    <div class="ion-text-center">
+      <h4 class="ion-no-margin">Download Invoice</h4>
+    </div>
+  </ion-toolbar>
+</ion-footer>
