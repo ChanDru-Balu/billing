@@ -6,15 +6,15 @@ import { HttpClient } from '@angular/common/http';
 import { SQLitePorter } from '@awesome-cordova-plugins/sqlite-porter/ngx';
 import * as _ from 'lodash';
 
-import { Song } from './song';
+import { Song } from './home/song';
 import { generateId } from './helper';
-import { Category } from './category';
-import { Product } from './product';
-import { Customer } from './customer';
-import { Seller } from './seller';
-import { Purchase } from './purchase';
-import { PurchaseItem } from './purchase-item';
-import { Sales } from './sales';
+import { Category } from './category/category';
+import { Product } from './product/product';
+import { Customer } from './customer/customer';
+import { Seller } from './seller/seller';
+import { Purchase } from './purchase/purchase';
+import { PurchaseItem } from './purchase/purchase-item';
+import { Sales } from './sales/sales';
 
 @Injectable({
   providedIn: 'root',

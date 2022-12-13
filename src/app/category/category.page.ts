@@ -8,8 +8,8 @@ import {
 import { DbService } from '../db.service';
 import { ModalController, NavController, ToastController } from '@ionic/angular';
 import * as _ from 'lodash';
-import { Song } from '../song';
-import { Category } from '../category';
+import { Song } from '../home/song';
+import { Category } from './category';
 import { CatModalPage } from './cat-modal/cat-modal.page';
 import { AlertController } from '@ionic/angular';
 

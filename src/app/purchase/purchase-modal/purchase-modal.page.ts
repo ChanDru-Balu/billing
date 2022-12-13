@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { DbService } from 'src/app/db.service';
-import { Product } from 'src/app/product';
-import { Purchase } from 'src/app/purchase';
-import { Seller } from '../../seller';
+import { Product } from 'src/app/product/product';
+import { Purchase } from 'src/app/purchase/purchase';
+import { Seller } from '../../seller/seller';
 
 @Component({
   selector: 'app-purchase-modal',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController, ToastController } from '@ionic/angular';
 import { DbService } from '../db.service';
-import { Sales } from '../sales';
-import { Customer } from '../customer';
+import { Sales } from './sales';
+import { Customer } from '../customer/customer';
 import { PurchaseModalPage } from '../purchase/purchase-modal/purchase-modal.page';
 import { InvoicePage } from '../purchase/invoice/invoice.page';
 import { SalesModalPage } from './sales-modal/sales-modal.page';

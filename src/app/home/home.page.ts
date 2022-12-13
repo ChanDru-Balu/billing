@@ -8,7 +8,7 @@ import {
 import { DbService } from '../db.service';
 import { ToastController } from '@ionic/angular';
 import * as _ from 'lodash';
-import { Song } from '../song';
+import { Song } from './song';
 
 @Component({
   selector: 'app-home',

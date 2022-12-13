@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { DbService } from 'src/app/db.service';
-import { Product } from 'src/app/product';
-import { Sales } from 'src/app/sales';
-import { Customer } from '../../customer';
+import { Product } from 'src/app/product/product';
+import { Sales } from 'src/app/sales/sales';
+import { Customer } from '../../customer/customer';
 
 @Component({
   selector: 'app-sales-modal',

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PDFGenerator } from '@awesome-cordova-plugins/pdf-generator/ngx';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { ModalController } from '@ionic/angular';
-import { Purchase } from 'src/app/purchase';
+import { Purchase } from 'src/app/purchase/purchase';
 
 @Component({
   selector: 'app-invoice',

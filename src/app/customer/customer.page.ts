@@ -8,7 +8,7 @@ import {
 import { DbService } from '../db.service';
 import { AlertController, ModalController, NavController, ToastController } from '@ionic/angular';
 import * as _ from 'lodash';
-import { Customer } from '../customer';
+import { Customer } from './customer';
 import { CustomerModalPage } from './customer-modal/customer-modal.page';
 
 @Component({

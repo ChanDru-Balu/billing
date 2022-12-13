@@ -13,8 +13,8 @@ import {
   ToastController,
 } from '@ionic/angular';
 import * as _ from 'lodash';
-import { Product } from '../product';
-import { Category } from '../category';
+import { Product } from './product';
+import { Category } from '../category/category';
 import { ProdModalPage } from './prod-modal/prod-modal.page';
 import { disableDebugTools } from '@angular/platform-browser';
 
