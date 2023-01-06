@@ -3,6 +3,7 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { DbService } from 'src/app/db.service';
 import { Product } from 'src/app/product/product';
 import { Purchase } from 'src/app/purchase/purchase';
+import { SellerModalPage } from 'src/app/seller/seller-modal/seller-modal.page';
 import { Seller } from '../../seller/seller';
 
 @Component({
@@ -34,6 +35,7 @@ export class PurchaseModalPage implements OnInit {
   purchase: any;
   purchases: any;
   oldItemsArray: any;
+  recentSellerName: any;
 
   constructor(
     private modalController: ModalController,
@@ -52,21 +54,16 @@ export class PurchaseModalPage implements OnInit {
     var day = new Date().toLocaleString('default', { day: '2-digit' });
     this.date = year + "-" + month + "-" + day;
     
+    this.getSeller()
     this.dbService.dbState().subscribe((res) => {
       if (res) {
         this.dbService
           .fetchProducts()
           .subscribe(async (products: Product[]) => {
             this.products = products;
+            console.log("Products:",this.products);
+            
           });
-      }
-    });
-    this.dbService.dbState().subscribe((res) => {
-      if (res) {
-        this.dbService.fetchSellers().subscribe(async (sellers: Seller[]) => {
-          this.sellers = sellers;
-          console.log('SELLERS:', JSON.stringify(this.sellers));
-        });
       }
     });
 
@@ -91,6 +88,19 @@ export class PurchaseModalPage implements OnInit {
     }
   }
 
+  getSeller(){
+    this.dbService.dbState().subscribe((res) => {
+      if (res) {
+        this.dbService.fetchSellers().subscribe(async (sellers: Seller[]) => {
+          this.sellers = sellers;
+          console.log('SELLERS:', JSON.stringify(this.sellers));
+          if(this.recentSellerName){this.seller = this.sellers.find(seller => seller.sellerName == this.recentSellerName)}
+          console.log('Seller:',this.seller);
+        });
+      }
+    });
+  }
+
   addItem() {
     let product = {
       price: 0,
@@ -110,16 +120,6 @@ export class PurchaseModalPage implements OnInit {
     for (let i = 0; i < this.items.length; i++) {
       console.log(this.items[i]);
     }
-    // let seen = new Set();
-    // var hasDuplicates = this.items.some(function (currentObject) {
-    //   return seen.size === seen.add(currentObject.productId).size;
-    // });
-    // console.log({ hasDuplicates });
-    // if(hasDuplicates){
-    //   alert("Cannot Add Same Product Twice! "+i)
-    //   alert(JSON.stringify(this.items))
-    //   this.items.slice(i,1)
-    // }
 
     this.items[i]['productId'] = product['id'];
     let gst = Number(product['gst']) * 0.01 * Number(product['price']);
@@ -256,4 +256,49 @@ export class PurchaseModalPage implements OnInit {
   dateChange(ev: any) {
     console.log({ ev });
   }
+
+  async sellerSelect(ev:any){
+    console.log({ev});
+    if(ev == 'false'){
+
+      this.seller = undefined
+      const modal = await this.modalController.create({
+        component: SellerModalPage,
+        cssClass: 'customer-modal',
+        backdropDismiss: false,
+        componentProps: {
+          'type': 'add',
+          'seller': undefined
+        }
+      });
+      modal.onDidDismiss().then((modelData) => {
+        if (modelData !== null) {
+          this.addSeller(modelData.data.seller);
+          this.recentSellerName = modelData.data.seller.sellerName
+        }
+      });
+      return await modal.present();
+    }
+    
+  }
+
+  addSeller(seller){
+    
+    this.dbService
+    .addSeller(seller)
+    .then(
+      (res) => {
+        console.log({res});
+        this.getSeller()
+      },
+      async () => {
+        const toast = await this.toast.create({
+          duration: 2500,
+          message: 'Failed to add seller',
+        });
+        toast.present();
+      }
+    );
+  }
+
 }

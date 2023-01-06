@@ -24,15 +24,16 @@
 
   <section padding>
     <ion-list *ngIf="saleses">
-    <h2 style="text-align: center;">Sales</h2>
 
-      <ion-item *ngFor="let sales of saleses;let i = index;">
+      <div *ngFor="let sales of saleses;let i = index;">
+
+      <ion-item  *ngIf="sales.id != null ">
         <ion-avatar slot="start">
           <ion-icon name="musical-notes" size="large"></ion-icon>
         </ion-avatar>
         <ion-label>
           <h3>{{sales.invoice}}</h3>
-          <p>{{sales.customerName}}</p>
+          <!-- <p>{{sales.customerName}}</p> -->
         </ion-label>
         <ion-buttons slot="end">
           <ion-button
@@ -50,6 +51,8 @@
           ></ion-button>
         </ion-buttons>
       </ion-item>
+    </div>
+
     </ion-list>
     <ion-text *ngIf="!saleses || saleses.length < 1"
       >No Sales Available. Add one</ion-text

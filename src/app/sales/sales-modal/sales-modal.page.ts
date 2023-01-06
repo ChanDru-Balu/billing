@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
+import { CustomerModalPage } from 'src/app/customer/customer-modal/customer-modal.page';
 import { DbService } from 'src/app/db.service';
 import { Product } from 'src/app/product/product';
 import { Sales } from 'src/app/sales/sales';
@@ -35,6 +36,7 @@ export class SalesModalPage implements OnInit {
   sales: any;
   saleses: any;
   oldItemsArray : any;
+  recentCustomerName: any;
 
 
   constructor(
@@ -62,14 +64,8 @@ export class SalesModalPage implements OnInit {
         });
       }
     });
-    this.dbService.dbState().subscribe((res) => {
-      if (res) {
-        this.dbService.fetchCustomers().subscribe(async (customers: Customer[]) => {
-          this.customers = customers;
-        });
-      }
-    });
 
+    this.getCustomers()
     if (this.type == 'edit') {
       let obj = {};
       obj = this.dbService.salesObj;
@@ -92,6 +88,18 @@ export class SalesModalPage implements OnInit {
       console.log({customer});
       
     }
+  }
+
+  getCustomers(){
+    this.dbService.dbState().subscribe((res) => {
+      if (res) {
+        this.dbService.fetchCustomers().subscribe(async (customers: Customer[]) => {
+          this.customers = customers;          
+          if(this.recentCustomerName){this.customer = this.customers.find(customer => customer.customerName == this.recentCustomerName)}
+          console.log('Customer:',this.customer);
+        });
+      }
+    });
   }
 
   addItem() {
@@ -225,5 +233,51 @@ export class SalesModalPage implements OnInit {
   dismiss() {
     this.modalController.dismiss();
   }
+
+  async customerSelect(ev:any){
+    console.log({ev});
+    if(ev == 'false'){
+
+      this.customer = undefined
+      const modal = await this.modalController.create({
+        component: CustomerModalPage,
+        cssClass: 'customer-modal',
+        backdropDismiss: false,
+        componentProps: {
+          'type': 'add',
+          'category': undefined
+        }
+      });
+      modal.onDidDismiss().then((modelData) => {
+        if (modelData !== null) {
+          this.addCustomer(modelData.data.customer);
+          this.recentCustomerName = modelData.data.customer.customerName
+        }
+      });
+      return await modal.present();
+    }
+    
+  }
+
+  addCustomer(customer){
+    
+    this.dbService
+    .addCustomer(customer)
+    .then(
+      (res) => {
+        console.log({res});
+        this.getCustomers()
+      },
+      async () => {
+        const toast = await this.toast.create({
+          duration: 2500,
+          message: 'Failed to add Category',
+        });
+        toast.present();
+      }
+    );
+  }
+
+
 
 }

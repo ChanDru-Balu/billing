@@ -37,11 +37,7 @@ export class CustomerPage implements OnInit {
           this.customers = customers;
           console.log({customers});
         });
-      } else{
-        // this.customers = [
-        //   { 'address1': "ottan kovil", 'customerName': "chandru", 'id': "zNFf9XYIhJN", 'mobile': 8526868928, disabled: true }
-        // ]
-      }
+      } 
     });
   }
 

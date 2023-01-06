@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PDFGenerator } from '@awesome-cordova-plugins/pdf-generator/ngx';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { ModalController } from '@ionic/angular';
+import { Customer } from 'src/app/customer/customer';
+import { DbService } from 'src/app/db.service';
 import { Sales } from 'src/app/sales/sales';
 
 @Component({
@@ -17,19 +19,44 @@ export class SalesInvoicePage implements OnInit {
   content: string;
   items: any;
   shopName: any;
-
+  customers: any;
+  customer:any;
+  test: boolean = false
+  innerHtml: any;
+  products: any;
+  
   constructor(
     private pdfGenerator: PDFGenerator,
     private socialSharing: SocialSharing,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private dbService: DbService
   ) {}
 
   ngOnInit() {
     this.shopName = localStorage.getItem('shop');
     this.items = JSON.parse(this.sales['items']);
+
+    this.dbService.dbState().subscribe((res) => {
+      if (res) {
+        this.dbService.fetchCustomers().subscribe(async (customers: Customer[]) => {
+          this.customers = customers;
+          this.customer = this.customers.find(customer => customer.id === this.sales['customerId'] )
+          this.dbService.fetchProducts().subscribe(async (products) => {
+            console.log({products})
+            this.products = products;
+            this.items.forEach(element => {
+              let product = this.products.find(prod => prod.id == element['productId'])
+              element['product'] = product 
+              console.log({element})
+            });
+          } )
+        });
+      }
+    });
   }
 
   downloadInvoice() {
+
     this.content = document.getElementById('PrintInvoice').innerHTML;
     let options = {
       documentSize: 'A4',

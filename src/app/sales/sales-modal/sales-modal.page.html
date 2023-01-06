@@ -28,9 +28,12 @@
           <ion-select
             placeholder="Select Customer"
             [(ngModel)]="customer"
+            (ngModelChange)="customerSelect($event)"
             okText="Okay"
             cancelText="Dismiss"
           >
+          <ion-select-option value="false" >Add New Customer</ion-select-option>
+
             <div *ngFor="let customer of customers; let i = index">
               <ion-select-option [value]="customer"
                 >{{customer.customerName}}-{{customer.mobile}}</ion-select-option
@@ -43,7 +46,7 @@
         <ion-item>
           <!-- <ion-label>Date</ion-label> -->
           <ion-input
-          style="padding-right: 4px;"
+            style="padding-right: 4px"
             type="date"
             [(ngModel)]="date"
             placeholder="Date"
@@ -102,12 +105,12 @@
       </ion-col>
       <ion-col size="3">
         <ion-input style="font-size: 10px" disabled="true"
-        >{{item.price}}</ion-input
-      >
+          >{{item.price}}</ion-input
+        >
       </ion-col>
       <ion-col size="2">
         <ion-input
-        style="font-size: 10px"
+          style="font-size: 10px"
           (ionChange)="itemInput($event,i)"
           [value]="item.quantity"
           placeholder="0"
@@ -136,8 +139,8 @@
     </ion-row>
   </ion-grid>
 
-  <ion-footer *ngIf="items.length > 0" style="margin-top: 5px;" >
-    <ion-button
+  <ion-footer *ngIf="items.length > 0" style="margin-top: 5px;">
+    <ion-button style="margin-top: 25%;"
       color="success"
       class="submit-button"
       expand="block"

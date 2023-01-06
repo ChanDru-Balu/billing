@@ -51,6 +51,7 @@ export class ProductPage implements OnInit {
             this.dbService
               .fetchCategories()
               .subscribe(async (categories: Category[]) => {
+                // alert(JSON.stringify(categories))
                 this.categories = categories;
                 console.log({categories});
                 for (let i = 0; i < this.products.length; i++) {
@@ -68,12 +69,10 @@ export class ProductPage implements OnInit {
     console.log(ev,i,product);
     this.products[i].category = this.categories.find(category => category.id === ev )
     console.log("Products:",this.products);
-    
-    
   }
 
   addProduct(product) {
-    console.log({product})
+    // console.log({product})
     this.dbService
       .addProduct({
         categoryId: product.categoryId,
@@ -85,7 +84,7 @@ export class ProductPage implements OnInit {
       .then(
         (res) => {
           console.log({res})
-          this.productFormGroup.reset();
+          // this.productFormGroup.reset();
         },
         async () => {
           const toast = await this.toast.create({
@@ -216,7 +215,10 @@ export class ProductPage implements OnInit {
   getCategory(categoryId){
     console.log({categoryId});
     let category = this.categories.find(category => category.id === categoryId)
-    return category['categoryName']
+    console.log({category});
+    
+    // return category['categoryName']
+    return 'Mobile'
   }
 
   async deleteConfirmation(id){

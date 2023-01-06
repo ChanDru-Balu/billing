@@ -112,7 +112,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div id="PrintInvoice" class="invoice-box"
+  <!-- <div id="PrintInvoice" class="invoice-box"
     style="max-width: 800px;margin: auto;padding: 30px;border: 1px solid #eee;box-shadow: 0 0 10px rgba(0, 0, 0, .15);font-size: 16px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #555;">
     <ion-title class="title-ios ion-text-capitalize" style="text-align: center;">Order Invoice</ion-title>
     <table cellpadding="0" cellspacing="0" style="width: 100%;line-height: inherit;text-align: left;">
@@ -120,10 +120,6 @@
         <td colspan="2" style="padding: 5px;vertical-align: top;">
           <table style="width: 100%;line-height: inherit;text-align: left;">
             <tr>
-              <!-- <td class="title"
-                style="padding: 5px;vertical-align: top;padding-bottom: 20px;font-size: 45px;line-height: 45px;color: #333;">
-                <img src="../../../assets/enappd.png" style="width:100%; max-width:300px;">
-              </td> -->
 
               <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 20px;">
                 Invoice: {{purchase.invoice}}<br>
@@ -140,14 +136,14 @@
             <tr>
               <td style="padding: 5px;vertical-align: top;padding-bottom: 40px;">
                 <b> Address:</b><br>
-                {{purchase.sellerAddress1}}
+                {{seller.address1}}
               </td>
 
               <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 40px;">
                 <b> Seller:</b><br>
-                {{purchase.sellerName}}<br>
-                {{purchase.sellerMobile}}<br>
-                {{purchase.sellerGst}}<br>
+                {{seller.sellerName}}<br>
+                {{seller.mobile}}<br>
+                {{seller.gst}}<br>
               </td>
             </tr>
           </table>
@@ -155,20 +151,62 @@
       </tr>
 
 
+    
       <tr class="heading">
         <td style="padding: 5px;vertical-align: top;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
           Item
         </td>
 
+        <td style="padding: 5px;vertical-align: top;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          Price
+        </td>
+
+        <td style="padding: 5px;vertical-align: top;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          Qty
+        </td>
+
+        <td style="padding: 5px;vertical-align: top;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          Total
+        </td>
+
+        <td style="padding: 5px;vertical-align: top;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          CGST
+        </td>
+
+        <td style="padding: 5px;vertical-align: top;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          SGST
+        </td>
+
         <td
           style="padding: 5px;vertical-align: top;text-align: right;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
-          Total
+          Amount
         </td>
       </tr>
 
       <tr *ngFor="let product of items" class="item">
         <td style="padding: 5px;vertical-align: top;border-bottom: 1px solid #eee;">
-          {{product.productName}}({{product.price}}) x {{product.quantity}}
+          {{product.product.productName}}
+        </td>
+
+        <td style="padding: 5px;vertical-align: top;border-bottom: 1px solid #eee;">
+          {{product.product.price}}
+        </td>
+
+        <td style="padding: 5px;vertical-align: top;border-bottom: 1px solid #eee;">
+          {{product.quantity}}
+        </td>
+
+        <td style="padding: 5px;vertical-align: top;border-bottom: 1px solid #eee;">
+          {{product.product.price*product.quantity}}
+        </td>
+
+        <td style="padding: 5px;vertical-align: top;border-bottom: 1px solid #eee;">
+          {{(product.product.price*product.quantity)*(product.product.gst/200)}}
+
+        </td>
+
+        <td style="padding: 5px;vertical-align: top;border-bottom: 1px solid #eee;">
+          {{(product.product.price*product.quantity)*(product.product.gst/200)}}
         </td>
 
         <td style="padding: 5px;vertical-align: top;text-align: right;border-bottom: 1px solid #eee;">
@@ -176,7 +214,13 @@
         </td>
       </tr>
 
-      <tr class="total">
+      <tr class="total" style="margin-left: auto; 
+      margin-right: 0;">
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
         <td style="padding: 5px;vertical-align: top;"></td>
 
         <td style="padding: 5px;vertical-align: top;text-align: right;border-top: 2px solid #eee;font-weight: bold;">
@@ -184,7 +228,13 @@
         </td>
       </tr>
 
-      <tr class="total">
+      <tr class="total" style="margin-left: auto; 
+      margin-right: 0;">
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
         <td style="padding: 5px;vertical-align: top;"></td>
 
         <td style="padding: 5px;vertical-align: top;text-align: right;border-top: 2px solid #eee;font-weight: bold;">
@@ -192,7 +242,13 @@
         </td>
       </tr>
 
-      <tr class="total">
+      <tr class="total" style="margin-left: auto; 
+      margin-right: 0;">
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
+        <td style="padding: 5px;vertical-align: top;"></td>
         <td style="padding: 5px;vertical-align: top;"></td>
 
         <td style="padding: 5px;vertical-align: top;text-align: right;border-top: 2px solid #eee;font-weight: bold;">
@@ -201,8 +257,283 @@
       </tr>
 
     </table>
-  </div>
+  </div> -->
   <!-- <button></button> -->
+
+  <div id="PrintInvoice" >
+    <header>
+      <h2 style="text-align: center; margin-top: 10px">INVOICE</h2>
+      <div style="display: flex">
+        <div style="text-align: left; width: 50%; padding-left: 20px">
+          <h3>Yovan Technolgies</h3>
+          <p style="margin: 3px">Namakkal, Erode</p>
+          <p style="margin: 3px">Tamilnadu</p>
+
+          <h5>BILLING TO:</h5>
+          <p style="margin: 3px">{{seller.sellerName}}</p>
+          <p style="margin: 3px">{{seller.mobile}}</p>
+          <p style="margin: 3px">{{seller.address1}}</p>
+        </div>
+
+        <div style="text-align: right; width: 50%; padding-right: 20px">
+          <h5>Invoice No:</h5>
+          <p>{{purchase.invoice}}</p>
+          <h5>Invoice Date:</h5>
+          <p>{{purchase.purchaseDate}}</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- <hr style=" width: 98%;"> -->
+
+    <table
+      style="
+        font-family: arial, sans-serif;
+        width: 95%;
+        padding-top: 55px;
+        margin: 0px auto;
+      "
+    >
+      <tr style="text-align: left">
+        <th
+          style="
+            text-align: left;
+            border-bottom: 2px solid #dddddd;
+            padding: 8px;
+            width: 50%;
+          "
+        >
+          ITEM
+        </th>
+        <th
+          style="
+            text-align: center;
+            border-bottom: 2px solid #dddddd;
+            padding: 8px;
+            width: 15%;
+          "
+        >
+          RATE
+        </th>
+        <th
+          style="
+            text-align: center;
+            border-bottom: 2px solid #dddddd;
+            padding: 8px;
+            width: 5%;
+          "
+        >
+          QTY
+        </th>
+        <th
+          style="
+            text-align: center;
+            border-bottom: 2px solid #dddddd;
+            padding: 8px;
+            width: 10%;
+          "
+        >
+          CGST
+        </th>
+        <th
+          style="
+            text-align: center;
+            border-bottom: 2px solid #dddddd;
+            padding: 8px;
+            width: 10%;
+          "
+        >
+          SGST
+        </th>
+        <th
+          style="
+            text-align: center;
+            border-bottom: 2px solid #dddddd;
+            padding: 8px;
+            width: 10%;
+          "
+        >
+          PRICE
+        </th>
+      </tr>
+
+      <tr *ngFor="let product of items">
+        <td
+          style="padding-left: 5px; padding-top: 10px; padding-bottom: 10px"
+        >
+        {{product.product.productName}}
+        </td>
+        <td
+          style="
+            text-align: center;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          "
+        >
+        {{product.product.price}}
+        </td>
+        <td
+          style="
+            text-align: center;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          "
+        >
+        {{product.quantity}}
+        </td>
+        <td
+          style="
+            text-align: center;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          "
+        >
+        {{(product.product.price*product.quantity)*(product.product.gst/200)}}
+        </td>
+        <td
+          style="
+            text-align: center;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          "
+        >
+        {{(product.product.price*product.quantity)*(product.product.gst/200)}}
+        </td>
+        <td
+          style="
+            text-align: center;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          "
+        >
+        {{product.total }}
+        </td>
+      </tr>
+
+
+    </table>
+
+    <table
+      style="
+        font-family: arial, sans-serif;
+        width: 95%;
+        margin: 0px auto;
+        padding-top: 50px;
+      "
+    >
+      <tr style="text-align: left">
+        <th style="text-align: left; padding: 8px; width: 50%"></th>
+        <th style="text-align: center; padding: 8px; width: 15%"></th>
+        <th style="text-align: center; padding: 8px; width: 5%"></th>
+        <th style="text-align: center; padding: 8px; width: 10%"></th>
+        <th
+          style="
+            text-align: right;
+            border-bottom: 2px solid #dddddd;
+            border-top: 2px solid #dddddd;
+            padding: 8px;
+            width: 12%;
+          "
+        >
+          Total
+        </th>
+        <th
+          style="
+            text-align: center;
+            border-bottom: 2px solid #dddddd;
+            border-top: 2px solid #dddddd;
+            padding: 8px;
+            width: 10%;
+          "
+        >
+        {{purchase.total}}
+        </th>
+      </tr>
+      <tr>
+        <td
+          style="padding-left: 5px; padding-top: 10px; padding-bottom: 10px"
+        ></td>
+        <td
+          style="
+            text-align: center;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          "
+        ></td>
+        <td
+          style="
+            text-align: center;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          "
+        ></td>
+        <td
+          style="
+            text-align: center;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          "
+        ></td>
+        <td
+          style="
+            text-align: right;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          "
+        >
+          Discount
+        </td>
+        <td
+          style="
+            text-align: center;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          "
+        >
+        {{purchase.discount}}
+        </td>
+      </tr>
+
+      <tr style="text-align: left">
+        <th style="text-align: left; padding: 8px; width: 50%"></th>
+        <th style="text-align: center; padding: 8px; width: 15%"></th>
+        <th style="text-align: center; padding: 8px; width: 5%"></th>
+        <th style="text-align: center; padding: 8px; width: 10%"></th>
+        <th
+          style="
+            text-align: right;
+            border-bottom: 2px solid #dddddd;
+            border-top: 2px solid #dddddd;
+            padding: 8px;
+            width: 12%;
+          "
+        >
+          Grand Toatal
+        </th>
+        <th
+          style="
+            text-align: center;
+            border-bottom: 2px solid #dddddd;
+            border-top: 2px solid #dddddd;
+            padding: 8px;
+            width: 10%;
+          "
+        >
+        {{purchase.grandTotal}}
+        </th>
+      </tr>
+    </table>
+  </div>
 </ion-content>
 
 <ion-footer>

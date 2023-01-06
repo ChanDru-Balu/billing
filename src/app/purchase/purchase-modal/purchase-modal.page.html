@@ -30,9 +30,11 @@
           <ion-select
             placeholder="Select Seller"
             [(ngModel)]="seller"
+            (ngModelChange)="sellerSelect($event)"
             okText="Okay"
             cancelText="Dismiss"
           >
+            <ion-select-option value="false" >Add New Seller</ion-select-option>
             <div *ngFor="let seller of sellers; let i = index">
               <ion-select-option [value]="seller"
                 >{{seller.sellerName}}-{{seller.mobile}}</ion-select-option
@@ -138,7 +140,8 @@
   </ion-grid>
 
   <ion-footer *ngIf="items.length > 0">
-    <ion-button
+    <ion-button 
+    style="margin-top: 25%;"
       color="success"
       class="submit-button"
       expand="block"

@@ -14,27 +14,111 @@
   <div class="main-header"></div>
 
   <ion-grid>
-
     <ion-row class="ion-margin-horizontal">
-      <ion-col *ngFor="let item of features" size="6">
-        <ion-card (click)="nav(item?.page)">
+      <ion-col size="6">
+        <ion-card (click)="nav('category')">
           <ion-card-header>
             <div align="center">
               <ion-thumbnail>
-                <img [src]="item?.src" />
+                <img src="assets/images/categories.png" />
               </ion-thumbnail>
             </div>
           </ion-card-header>
           <ion-card-content>
-            <ion-label color="dark">{{item?.name}} </ion-label>
+            <ion-label color="dark"> Category </ion-label>
+            <h4>{{this.categoriesCount || 0 }}</h4>
           </ion-card-content>
         </ion-card>
       </ion-col>
+
+      <ion-col size="6">
+        <ion-card (click)="nav('product')">
+          <ion-card-header>
+            <div align="center">
+              <ion-thumbnail>
+                <img src="assets/images/categories.png" />
+              </ion-thumbnail>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label color="dark">Products </ion-label>
+            <h4>{{this.totalProducts || 0  }}</h4>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card (click)="nav('customer')">
+          <ion-card-header>
+            <div align="center">
+              <ion-thumbnail>
+                <img src="assets/images/categories.png" />
+              </ion-thumbnail>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label color="dark">Customers </ion-label>
+            <h4>{{this.customers || 0 }}</h4>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card (click)="nav('seller')">
+          <ion-card-header>
+            <div align="center">
+              <ion-thumbnail>
+                <img src="assets/images/categories.png" />
+              </ion-thumbnail>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label color="dark">Sellers </ion-label>
+            <h4>{{this.sellers || 0 }}</h4>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card (click)="nav('purchase')">
+          <ion-card-header>
+            <div align="center">
+              <ion-thumbnail>
+                <img src="assets/images/categories.png" />
+              </ion-thumbnail>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label color="dark">Purchase </ion-label>
+            <h4>₹.{{this.totalPurchases || 0 }}</h4>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card (click)="nav('sales')">
+          <ion-card-header>
+            <div align="center">
+              <ion-thumbnail>
+                <img src="assets/images/categories.png" />
+              </ion-thumbnail>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label color="dark">Sales</ion-label>
+            <h4>₹.{{this.totalSales || 0 }}</h4>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <div>
+        <h4 style="text-align: center">
+          Pending : {{this.totalPurchases - this.totalSales || 0}}
+        </h4>
+      </div>
     </ion-row>
   </ion-grid>
-
 </ion-content>
 
-<ion-footer class="footer"> 
-  <button class="footer-button" (click)="upcoming()" >Upcoming...</button>
+<ion-footer class="footer">
+  <button class="footer-button" (click)="upcoming()">Upcoming...</button>
 </ion-footer>

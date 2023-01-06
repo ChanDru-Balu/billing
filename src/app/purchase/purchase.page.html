@@ -10,53 +10,52 @@
 </ion-header> -->
 
 <ion-content>
-
   <ion-toolbar color="medium">
     <ion-buttons slot="start">
       <ion-button (click)="back()" fill="clear">
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>
-      Purchase Page
-    </ion-title>
+    <ion-title> Purchase Page </ion-title>
   </ion-toolbar>
 
   <section padding>
-    <ion-list *ngIf="purchases">
-    <h2 style="text-align: center;">Purchase</h2>
-
-      <ion-item *ngFor="let purchase of purchases;let i = index;">
-        <ion-avatar slot="start">
-          <ion-icon name="musical-notes" size="large"></ion-icon>
-        </ion-avatar>
-        <ion-label>
-          <h3>{{purchase.invoice}}</h3>
-          <!-- <p>{{purchase.sellerName}}</p> -->
-        </ion-label>
-        <ion-buttons slot="end">
-          <ion-button
-            color="dark"
-            size="large"
-            (click)="deletePurchase($event, purchase)"
-          >
-            <ion-icon name="close"></ion-icon
-          ></ion-button>
-          <ion-button color="dark" (click)="presentModal('view', purchase)"
-            ><ion-icon name="eye"></ion-icon
-          ></ion-button>
-          <ion-button color="dark" (click)="presentModal('edit', purchase)"
-            ><ion-icon name="create"></ion-icon
-          ></ion-button>
-        </ion-buttons>
-      </ion-item>
+    <ion-list *ngIf="purchases.length > 0">
+      <div *ngFor="let purchase of purchases;let i = index;">
+        <ion-item *ngIf="purchase.id != null ">
+          <ion-avatar slot="start">
+            <ion-icon name="musical-notes" size="large"></ion-icon>
+          </ion-avatar>
+          <ion-label>
+            <h3>{{purchase.invoice}}</h3>
+            <!-- <p>{{purchase.sellerName}}</p> -->
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button
+              color="dark"
+              size="large"
+              (click)="deletePurchase($event, purchase)"
+            >
+              <ion-icon name="close"></ion-icon
+            ></ion-button>
+            <ion-button color="dark" (click)="presentModal('view', purchase)"
+              ><ion-icon name="eye"></ion-icon
+            ></ion-button>
+            <ion-button color="dark" (click)="presentModal('edit', purchase)"
+              ><ion-icon name="create"></ion-icon
+            ></ion-button>
+          </ion-buttons>
+        </ion-item>
+      </div>
     </ion-list>
-    <ion-text *ngIf="!purchases || purchases.length < 1"
+    <ion-text *ngIf="purchases.length <= 0"
       >No Purchase Available. Add one</ion-text
     >
   </section>
 
   <ion-fab vertical="bottom" horizontal="end">
-    <ion-fab-button  color="warning" (click)="presentModal('new',null)"><ion-icon name="add"></ion-icon></ion-fab-button>
-    </ion-fab>
+    <ion-fab-button color="warning" (click)="presentModal('new',null)"
+      ><ion-icon name="add"></ion-icon
+    ></ion-fab-button>
+  </ion-fab>
 </ion-content>

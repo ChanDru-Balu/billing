@@ -34,6 +34,7 @@ export class DbService {
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
   purchaseObj: any;
   salesObj: any;
+  recentCreatedCustomerId: any;
 
   constructor(
     private platform: Platform,
@@ -90,6 +91,8 @@ export class DbService {
   //   return this.purchaseItemList.asObservable();
   // }
 
+  
+
   getDummyData() {
     this.httpClient
       .get('assets/dumb.sql', { responseType: 'text' })
@@ -110,15 +113,18 @@ export class DbService {
       });
   }
 
+ 
+
   // Purchase
 
   getAllPurchases() {
     return this.storage
-      .executeSql('SELECT * FROM purchasetable;', [])
+      .executeSql('SELECT *,sum(total) as sum FROM purchasetable;', [])
       .then((res) => {
-        const purchases: Purchase[] = [];
+        let purchases = [];
         if (res.rows.length > 0) {
           for (let i = 0; i < res.rows.length; i++) {
+
             purchases.push({
               id: res.rows.item(i).id,
               purchaseDate: res.rows.item(i).purchaseDate,
@@ -128,6 +134,7 @@ export class DbService {
               grandTotal: res.rows.item(i).grandTotal,
               sellerId: res.rows.item(i).sellerId,
               items: res.rows.item(i).items,
+              sum: res.rows.item(i).sum
             });
           }
         }
@@ -163,7 +170,6 @@ export class DbService {
           }
           for (let j = 0; j < JSON.parse(items).length; j++) {
             console.log({ j });
-            alert(JSON.stringify(JSON.parse(items)[j]))
             console.log(JSON.parse(items)[j]);
             this.increaseProductCount(JSON.parse(items)[j]);
           }
@@ -258,9 +264,9 @@ export class DbService {
   // Sales
   getAllSalses() {
     return this.storage
-      .executeSql('SELECT * FROM salestable;', [])
+      .executeSql('SELECT *,sum(total) as sum FROM salestable;', [])
       .then((res) => {
-        const saleses: Sales[] = [];
+        let saleses = [];
         if (res.rows.length > 0) {
           for (let i = 0; i < res.rows.length; i++) {
             saleses.push({
@@ -272,6 +278,7 @@ export class DbService {
               grandTotal: res.rows.item(i).grandTotal,
               customerId: res.rows.item(i).customerId,
               items: res.rows.item(i).items,
+              sum: res.rows.item(i).sum
             });
           }
         }
@@ -307,14 +314,12 @@ export class DbService {
           }
           for (let j = 0; j < JSON.parse(items).length; j++) {
             console.log({ j });
-            alert(JSON.stringify(JSON.parse(items)[j]))
             console.log(JSON.parse(items)[j]);
             this.decreaseProductCount(JSON.parse(items)[j]);
           }
           this.getAllSalses();
         },
         (error) => {
-          // alert(JSON.stringify(error))
           console.error(error);
           if (error.code == 6) {
             alert('Invoice Already Exist!');
@@ -626,6 +631,31 @@ export class DbService {
 
   // Products
 
+  // getAllProducts() {
+  //   return this.storage
+  //     .executeSql('SELECT producttable.*,categorytable.categoryName,sum(quantity) as sum FROM producttable INNER JOIN categorytable on producttable.categoryId = categorytable.id  ; ', [])
+  //     .then((res) => {
+  //       let products = [];
+  //       if (res.rows.length > 0) {
+          
+  //         for (let i = 0; i < res.rows.length; i++) {
+  //           console.log("Response:",res.rows[i]);
+  //           alert(JSON.stringify(res.rows[i]))
+  //           products.push({
+  //             id: res.rows.item(i).id,
+  //             categoryId: res.rows.item(i).categoryId,
+  //             productName: res.rows.item(i).productName,
+  //             gst: res.rows.item(i).gst,
+  //             price: res.rows.item(i).price,
+  //             quantity: res.rows.item(i).quantity,
+  //             totalQty: res.rows.item(i).sum,
+  //           });
+  //         }
+  //       }
+  //       this.ProductsList.next(products);
+  //     });
+  // }
+
   getAllProducts() {
     return this.storage
       .executeSql('SELECT * FROM producttable;', [])
@@ -694,13 +724,16 @@ export class DbService {
       )
       .then(
         (res) => {
-          this.getAllProducts();
           console.log({ res });
+          // alert(JSON.stringify(res))
+          this.getAllProducts();
         },
         (error) => {
           console.error(error);
           if (error.code == 6) {
             alert('Product Name Already Exist!');
+          }else {
+            alert(JSON.stringify(error))
           }
         }
       );
@@ -735,7 +768,6 @@ export class DbService {
 
   increaseProductCount(product: any) {
     console.log({ product });
-    alert(JSON.stringify(product))
     this.getProductCount(product.productId)
     return this.storage
       .executeSql('UPDATE producttable SET  quantity = quantity + ? WHERE id = ?;', [
